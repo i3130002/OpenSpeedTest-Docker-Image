@@ -166,6 +166,8 @@ certbot certonly -n --webroot --webroot-path /usr/share/nginx/html --no-redirect
   fi
 fi
 
-crond -b -l 5
+if command -v crond >/dev/null 2>&1; then
+    crond -b -l 5
+fi
 
 tail -f /dev/null
