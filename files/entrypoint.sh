@@ -1,6 +1,6 @@
 #!/bin/sh
 
-DL_FILE="/usr/share/nginx/html/${FILE_NAME:-downloading}"
+DL_FILE="/usr/share/nginx/html/downloading"
 DL_SIZE="${FILE_SIZE:-31457280}"
 if [ "$(stat -c%s "$DL_FILE" 2>/dev/null || echo 0)" != "$DL_SIZE" ]; then
   if head -c "$DL_SIZE" /dev/urandom > "$DL_FILE" 2>/dev/null; then
@@ -167,7 +167,7 @@ certbot certonly -n --webroot --webroot-path /usr/share/nginx/html --no-redirect
 fi
 
 if command -v crond >/dev/null 2>&1; then
-    crond -b -l 5
+    crond -f -l 5 &
 fi
 
 tail -f /dev/null
