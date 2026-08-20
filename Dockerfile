@@ -2,7 +2,7 @@
 # Dockerfile for https://hub.docker.com/r/openspeedtest/latest
 FROM nginxinc/nginx-unprivileged:stable-alpine
 
-LABEL maintainer "OpenSpeedTest.com <support@OpenSpeedTest.com>"
+LABEL maintainer="OpenSpeedTest.com <support@OpenSpeedTest.com>"
 
 ENV ENABLE_LETSENCRYPT=false
 ENV DOMAIN_NAME=false
@@ -36,7 +36,7 @@ VOLUME /var/log/letsencrypt
 
 RUN rm -rf /etc/nginx/conf.d/default.conf \
     && chown -R nginx /usr/share/nginx/html/ \
-    && chmod 755 /usr/share/nginx/html/upload \
+    && chmod 744 /usr/share/nginx/html/upload \
     && chown nginx ${CONFIG} \
     && chmod 400 ${CONFIG} \
     && chown nginx /etc/nginx/nginx.conf \
